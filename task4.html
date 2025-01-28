@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Typing Area</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #4CAF50;
+    }
+    textarea {
+      width: 60%;
+      height: 150px;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #4CAF50;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: #45a049;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #logs {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      white-space: pre-wrap;
+      font-family: "Courier New", monospace;
+      max-width: 60%;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Start Typing Below</h1>
+  <p>Capture the keys you type and see the results in real time!</p>
+  
+  <textarea id="textInput" placeholder="Start typing here..."></textarea>
+  
+  <button onclick="showKeystrokes()">Show Keystrokes</button>
+
+  <div id="logs">
+    <strong>Keystrokes:</strong>
+    <p id="keystrokeOutput"></p>
+  </div>
+
+  <script>
+    // Array to store keystrokes
+    let keyLogs = [];
+
+    // Event listener to capture keypress events
+    document.getElementById('textInput').addEventListener('keydown', function(event) {
+      // Capture and log the key pressed
+      const keyPressed = event.key;
+      keyLogs.push(keyPressed);
+
+      // Optionally, log it to the console (for development purposes)
+      console.log(`Key pressed: ${keyPressed}`);
+    });
+
+    // Function to display keystrokes in the output section
+    function showKeystrokes() {
+      const output = keyLogs.join('');  // Join the keys to show as a string
+      document.getElementById('keystrokeOutput').textContent = output;
+    }
+  </script>
+</body>
+</html>
